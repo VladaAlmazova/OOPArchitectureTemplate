@@ -1,17 +1,16 @@
 package ru.urfu;
 
 /**
- * Общий класс для работы с сообщениями
+ * Работа с сообщениями
  */
 public class CommonMessageHandler {
     /**
-     * Отправляет пользователю его сообщение с пометкой
-     * @param bot - бот, который реализует отправку сообщений пользователю
-     * @param chatId - идентификатор чата
-     * @param messageFromUser - сообщение пользователя
+     * Возвращает текст сообщения с пометкой от бота
+     *
+     * @param messageFromUser текст сообщения пользователя
+     * @return текст с пометкой
      */
-    public void annotateUserText(WorkingWithMessages bot, String chatId, String messageFromUser){
-        String taggedUserText = String.format("Ваше сообщение: %s", messageFromUser);
-        bot.sendMessage(chatId, taggedUserText);
+    public String annotateUserText(String messageFromUser) {
+        return String.format("\"Ваше сообщение: '%s'\".", messageFromUser);
     }
 }
