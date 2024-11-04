@@ -15,7 +15,7 @@ public class CommonMessageHandlerTest {
      * Создает новый экземпляр класса обработчика сообщений перед каждым тестом
      */
     @BeforeEach
-    void initial(){
+    void initial() {
         commonMessageHandler = new CommonMessageHandler();
     }
 
@@ -25,7 +25,7 @@ public class CommonMessageHandlerTest {
      */
     @Test
     @Disabled("Сообщение из одного слова")
-    void testAnnotateUserTextOneWord(){
+    void testAnnotateUserTextOneWord() {
         String annotateMessage = commonMessageHandler.annotateUserText("one");
         Assertions.assertEquals("\"Ваше сообщение: 'one'\".", annotateMessage);
     }
@@ -36,13 +36,13 @@ public class CommonMessageHandlerTest {
      */
     @Test
     @Disabled("Текстовое сообщение со знаками препинания")
-    void testAnnotateUserTextText (){
+    void testAnnotateUserTextText() {
         String annotateMessage = commonMessageHandler.annotateUserText(
                 "Сложное предложение, которое - использует : знаки ; препинания.\n" +
                         "!Второе предложение!?");
         Assertions.assertEquals(
                 "\"Ваше сообщение: 'Сложное предложение, которое - использует : знаки ; препинания.\n" +
-                "!Второе предложение!?'\".", annotateMessage);
+                        "!Второе предложение!?'\".", annotateMessage);
     }
 
     /**
@@ -51,7 +51,7 @@ public class CommonMessageHandlerTest {
      */
     @Test
     @Disabled("Null сообщение")
-    void testAnnotateUserTextNull(){
+    void testAnnotateUserTextNull() {
         String annotateMessage = commonMessageHandler.annotateUserText(null);
         Assertions.assertEquals(
                 "\"Ваше сообщение: 'null'\".", annotateMessage);
@@ -63,7 +63,7 @@ public class CommonMessageHandlerTest {
      */
     @Test
     @Disabled("Пустое сообщение")
-    void testAnnotateUserTextEmpty(){
+    void testAnnotateUserTextEmpty() {
         String annotateMessage = commonMessageHandler.annotateUserText("");
         Assertions.assertEquals(
                 "\"Ваше сообщение: ''\".", annotateMessage);
