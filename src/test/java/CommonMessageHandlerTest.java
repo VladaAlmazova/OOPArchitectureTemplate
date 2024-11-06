@@ -1,7 +1,4 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.urfu.CommonMessageHandler;
 
 /**
@@ -9,7 +6,7 @@ import ru.urfu.CommonMessageHandler;
  */
 public class CommonMessageHandlerTest {
 
-    public CommonMessageHandler commonMessageHandler;
+    private CommonMessageHandler commonMessageHandler;
 
     /**
      * Создает новый экземпляр класса обработчика сообщений перед каждым тестом
@@ -24,7 +21,7 @@ public class CommonMessageHandlerTest {
      * Пользовательское сообщение - одно слово
      */
     @Test
-    @Disabled("Сообщение из одного слова")
+    @DisplayName("Сообщение из одного слова")
     void testAnnotateUserTextOneWord() {
         String annotateMessage = commonMessageHandler.annotateUserText("one");
         Assertions.assertEquals("\"Ваше сообщение: 'one'\".", annotateMessage);
@@ -35,7 +32,7 @@ public class CommonMessageHandlerTest {
      * Пользовательское сообщение - текст
      */
     @Test
-    @Disabled("Текстовое сообщение со знаками препинания")
+    @DisplayName("Текстовое сообщение со знаками препинания")
     void testAnnotateUserTextText() {
         String annotateMessage = commonMessageHandler.annotateUserText(
                 "Сложное предложение, которое - использует : знаки ; препинания.\n" +
@@ -50,7 +47,7 @@ public class CommonMessageHandlerTest {
      * Пользовательское сообщение - null
      */
     @Test
-    @Disabled("Null сообщение")
+    @DisplayName("Null сообщение")
     void testAnnotateUserTextNull() {
         String annotateMessage = commonMessageHandler.annotateUserText(null);
         Assertions.assertEquals(
@@ -62,7 +59,7 @@ public class CommonMessageHandlerTest {
      * Пользовательское сообщение - пустое
      */
     @Test
-    @Disabled("Пустое сообщение")
+    @DisplayName("Пустое сообщение")
     void testAnnotateUserTextEmpty() {
         String annotateMessage = commonMessageHandler.annotateUserText("");
         Assertions.assertEquals(
