@@ -6,14 +6,14 @@ package ru.urfu;
 public class Application {
 
     public static void main(String[] args) {
-        //TODO добавить в переменную окружения
-        String telegramBotName = System.getenv("JavaChatBot3_bot");
-        String telegramToken = System.getenv("7915671046:AAF8_ZqOvFPsQcGxk77DisXxIZM0duuZ_2Q");
-        new TelegramBot(telegramBotName, telegramToken)
+        CommonMessageHandler commonMessageHandler = new CommonMessageHandler();
+        String telegramBotName = System.getenv("telegram_botName");
+        String telegramToken = System.getenv("telegram_token");
+        new TelegramBot(telegramBotName, telegramToken, commonMessageHandler)
                 .start();
 
         String discordToken = System.getenv("discord_token");
-        new DiscordBot(discordToken)
+        new DiscordBot(discordToken, commonMessageHandler)
                 .start();
 
         // сколько угодно чат платформ и все должны работать одинаково

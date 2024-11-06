@@ -13,11 +13,13 @@ import discord4j.core.object.entity.channel.MessageChannel;
 public class DiscordBot {
 
     private final String token;
+    private final CommonMessageHandler commonMessageHandler;
 
     private GatewayDiscordClient client;
 
-    public DiscordBot(String token) {
+    public DiscordBot(String token, CommonMessageHandler commonMessageHandler) {
         this.token = token;
+        this.commonMessageHandler = commonMessageHandler;
     }
 
     public void start() {
@@ -34,7 +36,9 @@ public class DiscordBot {
                     if (eventMessage.getAuthor().map(user -> !user.isBot()).orElse(false)) {
                         String chatId = eventMessage.getChannelId().asString();
                         String messageFromUser = eventMessage.getContent();
-                        // TODO обработайте сообщение от пользователя (messageFromUser)
+
+                        String annotateMessage = commonMessageHandler.annotateUserText(messageFromUser);
+                        sendMessage(chatId, annotateMessage);
                     }
                 });
         System.out.println("Discord бот запущен");
@@ -43,7 +47,8 @@ public class DiscordBot {
 
     /**
      * Отправить сообщение
-     * @param chatId идентификатор чата
+     *
+     * @param chatId  идентификатор чата
      * @param message текст сообщения
      */
     public void sendMessage(String chatId, String message) {
